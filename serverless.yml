@@ -1,0 +1,29 @@
+service: serverless-example
+app: product-api
+
+provider:
+  name: aws
+  # runtime: nodejs14.17.4
+  # stage: dev
+  # region: us-east-1
+
+functions:
+  productAPI:
+    handler: index.handler
+    events:
+        - http:
+            path: /get
+            method: get
+        - http:
+            path: /alexa
+            method: post
+        - http:
+            path: /
+            method: post
+        - http:
+            path: /{productId}
+            method: get
+
+plugins:
+  - serverless-offline
+  # - serverless-dotenv-plugin
